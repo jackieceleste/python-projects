@@ -68,19 +68,30 @@ hurricane_info = sort_by_year(names, years)
 #count how often each area is listed as an affected area
 #return results in a dictionary 
 def count_areas_affected(hurricane_info):
-  times_area_affected = {}
+  times_areas_affected = {}
   all_areas = []
   for lst in hurricane_info:
     for area in lst:
       all_areas.append(area)
   for area in all_areas:
-      times_area_affected = dict((area, all_areas.count(area)) for area in all_areas)
-  return times_area_affected
-times_area_affected = count_areas_affected(areas_affected)
-#print(times_area_affected)
+      times_areas_affected = dict((area, all_areas.count(area)) for area in all_areas)
+  return times_areas_affected
+times_areas_affected = count_areas_affected(areas_affected)
+#print(times_areas_affected)
 
 
-
+#find area affected by the most hurricanes
+#find how often this area was hit
+def area_most_affected(times_areas_affected):
+  max_key = max(times_areas_affected, key=times_areas_affected.get)
+  max_value = max(times_areas_affected.values())
+  most_affected_area = [max_key, max_value]
+  most_affected_area = {
+  max_key: max_value
+  }
+  return most_affected_area
+most_affected_area = area_most_affected(times_areas_affected)
+print(most_affected_area)
 
 
 
