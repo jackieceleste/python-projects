@@ -34,12 +34,26 @@ def update_damages(lst):
     else:
       updated_damages.append(cost)
 update_damages(damages)
-print(updated_damages)
+#print(updated_damages)
 
 
 # dictionary function for hurricane info
-
-
+def hurricanes_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths):
+  hurricane_info = {}
+  num_hurricanes = len(names)
+  for i in range(0, num_hurricanes):
+    hurricane_info[names[i]] = {
+      'Name': names[i],
+      'Month': months[i],
+      'Year': years[i],
+      'Max Sustained Wind': max_sustained_winds[i],
+      'Areas Affected': areas_affected[i],
+      'Damage': damages[i],
+      'Death': deaths[i]
+      }
+  return hurricane_info
+hurricane_info = hurricanes_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
+print(hurricane_info)
 
 
 #organize hurricanes by year
