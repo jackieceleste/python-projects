@@ -40,8 +40,7 @@ update_damages(damages)
 # dictionary function for hurricane info
 def hurricanes_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths):
   hurricane_info = {}
-  num_hurricanes = len(names)
-  for i in range(0, num_hurricanes):
+  for i in range(0, len(names)):
     hurricane_info[names[i]] = {
       'Name': names[i],
       'Month': months[i],
@@ -53,10 +52,17 @@ def hurricanes_dict(names, months, years, max_sustained_winds, areas_affected, d
       }
   return hurricane_info
 hurricane_info = hurricanes_dict(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
-print(hurricane_info)
+#print(hurricane_info)
 
 
 #organize hurricanes by year
+def sort_by_year(names, years):
+  for i in range(0, len(names)):
+    hurricane_info[years[i]] = hurricane_info[names[i]]
+    del hurricane_info[names[i]]
+  return(hurricane_info)
+hurricane_info = sort_by_year(names, years)
+print(hurricane_info)
 
 
 
