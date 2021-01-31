@@ -91,11 +91,21 @@ def area_most_affected(times_areas_affected):
   }
   return most_affected_area
 most_affected_area = area_most_affected(times_areas_affected)
-print(most_affected_area)
+#print(most_affected_area)
 
 
-
-
+#find hurricane with greatest number of deaths
+#find number of deaths it caused
+def find_greatest_deaths(hurricane_info):
+  deadliest_hurricane = {}
+  max_value = max(val['Death'] for val in hurricane_info.values())
+  for val in hurricane_info.values():
+    if val["Death"] == max_value: 
+      deadliest_name = val['Name']
+  deadliest_hurricane = {'Name': deadliest_name, 'Death': max_value}
+  return deadliest_hurricane
+deadliest_hurricane = find_greatest_deaths(hurricane_info)
+print(deadliest_hurricane)
 
 
 
