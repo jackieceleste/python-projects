@@ -155,4 +155,37 @@ def find_costliest_hurricane(hurricane_info):
 
 costliest_hurricane = find_costliest_hurricane(hurricane_info)
 print(costliest_hurricane)
+
+
+#rate hurricanes on damage scale
+def create_damage_ratings(hurricane_info):
+  damage_ratings = {}
+  rating0 = []
+  rating1 = []
+  rating2 = []
+  rating3 = []
+  rating4 = []
+  for val in hurricane_info.values():
+    if val['Damage'] != 'Damages not recorded':
+      if val['Damage'] == 0:
+        rating0.append(val['Name'])
+      elif val['Damage'] > 0 and val['Damage'] <= 100000000.0:
+        rating1.append(val['Name'])
+      elif val['Damage'] > 100000000.0 and val['Damage'] <= 1000000000.0:
+        rating2.append(val['Name'])
+      elif val['Damage'] > 1000000000.0 and val['Damage'] <= 10000000000.0:
+        rating3.append(val['Name'])
+      else:
+        rating4.append(val['Name'])
+  damage_ratings = {0: rating0, 1: rating1, 2: rating2, 3: rating3, 4: rating4}
+  return damage_ratings
+damage_ratings = create_damage_ratings(hurricane_info)
+#print(damage_ratings)
+  
+
+
+
+
+
+
     
