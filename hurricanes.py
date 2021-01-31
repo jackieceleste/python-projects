@@ -96,17 +96,47 @@ most_affected_area = area_most_affected(times_areas_affected)
 
 #find hurricane with greatest number of deaths
 #find number of deaths it caused
-def find_greatest_deaths(hurricane_info):
+def find_deadliest_hurricane(hurricane_info):
   deadliest_hurricane = {}
   max_value = max(val['Death'] for val in hurricane_info.values())
   for val in hurricane_info.values():
-    if val["Death"] == max_value: 
+    if val['Death'] == max_value: 
       deadliest_name = val['Name']
   deadliest_hurricane = {'Name': deadliest_name, 'Death': max_value}
   return deadliest_hurricane
-deadliest_hurricane = find_greatest_deaths(hurricane_info)
-print(deadliest_hurricane)
+deadliest_hurricane = find_deadliest_hurricane(hurricane_info)
+#print(deadliest_hurricane)
 
+
+#rate hurricanes on mortality scale
+def create_mortality_ratings(hurricane_info):
+  mortality_ratings = {}
+  rating0 = []
+  rating1 = []
+  rating2 = []
+  rating3 = []
+  rating4 = []
+  for val in hurricane_info.values():
+    if val['Death'] == 0:
+      rating0.append(val['Name'])
+    elif val['Death'] > 0 and val['Death'] <= 100:
+      rating1.append(val["Name"])
+    elif val['Death'] > 100 and val['Death'] <= 500:
+      rating2.append(val['Name'])
+    elif val['Death'] > 500 and val['Death'] <= 1000:
+      rating3.append(val['Name'])
+    else:
+      rating4.append(val['Name'])
+  mortality_ratings = {
+    0: rating0, 
+    1: rating1, 
+    2: rating2, 
+    3: rating3, 
+    4: rating4
+    }
+  return mortality_ratings
+mortality_ratings = create_mortality_ratings(hurricane_info)
+#print(mortality_ratings)
 
 
 
