@@ -47,7 +47,7 @@ def hurricanes_dict(names, months, years, max_sustained_winds, areas_affected, d
       'Year': years[i],
       'Max Sustained Wind': max_sustained_winds[i],
       'Areas Affected': areas_affected[i],
-      'Damage': damages[i],
+      'Damage': updated_damages[i],
       'Death': deaths[i]
       }
   return hurricane_info
@@ -139,7 +139,20 @@ mortality_ratings = create_mortality_ratings(hurricane_info)
 #print(mortality_ratings)
 
 
+#find the hurricane that caused the greatest damage
+#find how costly it was
+def find_costliest_hurricane(hurricane_info):
+  costliest_hurricane = {}
+  hurricane_name = ''
+  max_value = 0
+  for val in hurricane_info.values():
+    if val['Damage'] != 'Damages not recorded':
+      if val['Damage'] > max_value:
+        max_value = val['Damage']
+        hurricane_name = val['Name']
+  costliest_hurricane = {'Name': hurricane_name, 'Damage': max_value}
+  return costliest_hurricane
 
-
-
+costliest_hurricane = find_costliest_hurricane(hurricane_info)
+print(costliest_hurricane)
     
